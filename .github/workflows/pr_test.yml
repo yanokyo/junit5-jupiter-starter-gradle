@@ -43,10 +43,12 @@ jobs:
       if: ${{ !cancelled() }}
 
     - name: Check Result1
+      if: always()
       run: |
         ls -laR ./*
 
     - name: Check Result2
+      if: always()
       run: |
         ls -la ./build/test-results/test/
         cat ./build/test-results/test/*.xml
