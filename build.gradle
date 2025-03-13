@@ -19,8 +19,4 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
-        reports {
-            junitXml.enabled = true
-            junitXml.destination = file("$buildDir/test-results/junitXml")
-        }
 }
