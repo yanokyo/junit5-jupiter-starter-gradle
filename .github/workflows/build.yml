@@ -30,7 +30,7 @@ jobs:
       if: ${{ !cancelled() }}
     - name: Check Result
       run: |
-        ls -laR build/
+        ls -laR ./
     - name: Upload War File
       uses: actions/upload-artifact@v4
       with:
