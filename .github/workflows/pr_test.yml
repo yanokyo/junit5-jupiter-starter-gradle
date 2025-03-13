@@ -38,9 +38,11 @@ jobs:
       
     - name: Report build results
       uses: gmazzo/publish-report-annotations@v1 # target latest major
+      if: ${{ !cancelled() }}
 
     - name: Test Reports
       uses: xportation/junit-coverage-report@main
+      if: ${{ !cancelled() }}
       with:
         github_token: ${{ secrets.github_token }}
         junit-path: ./build/test-results/test/*.xml
