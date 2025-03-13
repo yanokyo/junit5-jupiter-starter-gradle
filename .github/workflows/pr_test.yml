@@ -42,7 +42,11 @@ jobs:
       uses: gmazzo/publish-report-annotations@v1 # target latest major
       if: ${{ !cancelled() }}
 
-    - name: Check Result
+    - name: Check Result1
+      run: |
+        ls -laR ./*
+
+    - name: Check Result2
       run: |
         ls -la ./build/test-results/test/
         cat ./build/test-results/test/*.xml
@@ -55,6 +59,7 @@ jobs:
 
     - name: Upload War File
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: prototypePh2
-        path: build/libs/*.war
+        path: build/test-results/test/*.xml
