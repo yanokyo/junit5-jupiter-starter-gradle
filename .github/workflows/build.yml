@@ -1,4 +1,4 @@
-name: 自動ビルド(Gradle)
+name: 自動ビルド(Gradle + JUnit5)
 
 on:
   push:
