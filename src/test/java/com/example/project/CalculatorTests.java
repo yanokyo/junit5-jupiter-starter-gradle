@@ -30,7 +30,7 @@ class CalculatorTests {
 	@CsvSource({
 			"0,    1,   1",
 			"1,    2,   3",
-			"49,  51, 103",
+			"49,  51, 104",
 			"1,  100, 101"
 	})
 	void add(int first, int second, int expectedResult) {
