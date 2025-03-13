@@ -38,7 +38,6 @@ jobs:
       
     - name: Report build results
       uses: gmazzo/publish-report-annotations@v1 # target latest major
-      if: ${{ !cancelled() }}
 
     - name: Test Reports
       uses: xportation/junit-coverage-report@main
