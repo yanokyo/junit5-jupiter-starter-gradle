@@ -42,6 +42,11 @@ jobs:
       uses: gmazzo/publish-report-annotations@v1 # target latest major
       if: ${{ !cancelled() }}
 
+    - name: Check Result
+      run: |
+        ls -la ./build/test-results/test/
+        cat ./build/test-results/test/*.xml
+
     - name: Test Reports
       uses: xportation/junit-coverage-report@main
       if: always()
