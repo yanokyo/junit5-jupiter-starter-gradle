@@ -12,7 +12,9 @@ jobs:
       #contents: write
       # To write Super-linter status checks
       #statuses: write
-      write-all
+      #write-all
+      contents: read
+      pull-requests: write
   
     runs-on: ubuntu-latest
     steps:
