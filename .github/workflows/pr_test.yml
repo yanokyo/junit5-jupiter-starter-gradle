@@ -43,9 +43,8 @@ jobs:
 
     - name: Test Reports
       uses: xportation/junit-coverage-report@main
-      if: ${{ !cancelled() }}
+      if: always()
       with:
-        github-token: ${{ secrets.github_token }}
         junit-path: ./build/test-results/test/*.xml
 
     - name: Upload War File
