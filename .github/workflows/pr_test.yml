@@ -43,8 +43,8 @@ jobs:
     - name: Test Reports
       uses: xportation/junit-coverage-report@main
       with:
-        github-token: {{ $secrets.your_secret }}
-        junit-path: ./build/test-results/test/**.xml
+        github_token: ${{ secrets.github_token }}
+        junit-path: ./build/test-results/test/*.xml
 
     - name: Upload War File
       uses: actions/upload-artifact@v4
