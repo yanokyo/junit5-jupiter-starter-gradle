@@ -1,0 +1,50 @@
+name: 自動単体テスト(JUnit5)
+
+on:
+  pull_request: null
+
+permissions:
+  contents: read
+
+jobs:
+  Build:
+    permissions:
+      contents: read
+      checks: write
+  
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v4
+      
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: 21
+        
+    - name: Setup Gradle 8.11.1
+      uses: gradle/actions/setup-gradle@v4
+      with:
+        gradle-version: 8.11.1
+        
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+      
+    - name: Build with Gradle 8.11.1
+      run: ./gradlew build
+      
+    - name: Report build results
+      if: cancelled() != true
+      uses: dorny/test-reporter@v1
+      with:
+        name: 'JUnit Test Report'
+        path: '**/build/test-results/*/TEST-*.xml'
+        reporter: 'java-junit'
+        fail-on-error: false
+
+    - name: Upload War File
+      uses: actions/upload-artifact@v4
+      with:
+        name: prototypePh2
+        path: build/libs/*.war
