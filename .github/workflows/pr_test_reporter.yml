@@ -1,4 +1,4 @@
-name: 自動単体テスト(JUnit5)
+name: 自動単体テスト(JUnit5 Ver2)
 
 on:
   pull_request: null
