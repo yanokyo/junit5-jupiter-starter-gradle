@@ -3,16 +3,18 @@ name: 自動単体テスト(JUnit5)
 on:
   pull_request: null
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   Build:
     permissions:
       # To write linting fixes
-      contents: write
+      #contents: write
       # To write Super-linter status checks
-      statuses: write
+      #statuses: write
+      #write-all
+      contents: read
+      pull-requests: write
   
     runs-on: ubuntu-latest
     steps:
@@ -40,14 +42,26 @@ jobs:
       uses: gmazzo/publish-report-annotations@v1 # target latest major
       if: ${{ !cancelled() }}
 
+    - name: Check Result1
+      if: always()
+      run: |
+        ls -laR ./*
+
+    - name: Check Result2
+      if: always()
+      run: |
+        ls -la ./build/test-results/test/
+        cat ./build/test-results/test/*.xml
+
     - name: Test Reports
       uses: xportation/junit-coverage-report@main
+      if: always()
       with:
-        github-token: {{ $secrets.your_secret }}
-        junit-path: ./build/test-results/test/**.xml
+        junit-path: ./build/test-results/test/*.xml
 
     - name: Upload War File
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: prototypePh2
-        path: build/libs/*.war
+        path: build/test-results/test/*.xml
